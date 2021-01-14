@@ -10,28 +10,28 @@ all: options dwm
 
 options:
 	@echo dwm build options:
-	@echo "CFLAGS   = $(CFLAGS)"
-	@echo "LDFLAGS  = $(LDFLAGS)"
-	@echo "CC       = $(CC)"
+	@echo "CFLAGS  = $(CFLAGS)"
+	@echo "LDFLAGS = $(LDFLAGS)"
+	@echo "CC      = $(CC)"
 
-.c.o:
-	$(CC) -c $(CFLAGS) $<
+config.h:
+	cp config.def.h config.h
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
 
 $(OBJ): config.h config.mk
 
-config.h:
-	cp config.def.h $@
-
 dwm: $(OBJ)
-	$(CC) -o $@ $(OBJ) $(LDFLAGS)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS)
 
 clean:
-	rm -f dwm $(OBJ) dwm-$(VERSION).tar.gz
+	rm -f dwm *.o dwm-$(VERSION).tar.gz
 
 dist: clean
 	git archive --prefix dwm-$(VERSION)/ HEAD | gzip > dwm-$(VERSION).tar.gz
 
-install: all
+install: dwm
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
 	cp -f dwm $(DESTDIR)$(PREFIX)/bin
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dwm
