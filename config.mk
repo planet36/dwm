@@ -9,8 +9,8 @@ PREFIX = /usr/local
 MANPREFIX = $(PREFIX)/share/man
 
 # Xinerama, comment if you don't want it
-XINERAMALIBS  = -lXinerama
-XINERAMAFLAGS = -DXINERAMA
+#XINERAMALIBS  = -lXinerama
+#XINERAMAFLAGS = -DXINERAMA
 
 # includes and libs
 INCS = \
