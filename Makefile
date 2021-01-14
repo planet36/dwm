@@ -3,7 +3,8 @@
 
 include config.mk
 
-SRCS = drw.c dwm.c util.c
+HDRS = $(filter-out config.def.h, config.h $(wildcard *.h))
+SRCS = $(filter-out transient.c, $(wildcard *.c))
 OBJS = $(SRCS:.c=.o)
 
 all: options dwm
@@ -20,10 +21,10 @@ config.h:
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
-$(OBJS): config.h config.mk
+$(OBJS): config.mk $(HDRS)
 
 dwm: $(OBJS)
-	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 clean:
 	rm -f dwm *.o dwm-$(VERSION).tar.gz
