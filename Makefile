@@ -29,7 +29,7 @@ dwm: $(OBJS)
 clean:
 	rm -f dwm *.o dwm-$(VERSION).tar.gz
 
-dist: clean
+dist:
 	git archive --prefix dwm-$(VERSION)/ HEAD | gzip > dwm-$(VERSION).tar.gz
 
 install: dwm
