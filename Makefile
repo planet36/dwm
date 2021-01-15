@@ -30,7 +30,7 @@ clean:
 	rm -f dwm *.o dwm-$(VERSION).tar.gz
 
 dist:
-	git archive --prefix dwm-$(VERSION)/ HEAD | gzip > dwm-$(VERSION).tar.gz
+	git archive --prefix dwm-$(VERSION)/ HEAD | xz > dwm-$(VERSION).tar.xz
 
 install: dwm
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
