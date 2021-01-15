@@ -27,7 +27,7 @@ dwm: $(OBJS)
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 clean:
-	rm -f dwm *.o dwm-$(VERSION).tar.gz
+	rm -f dwm *.o dwm-$(VERSION).tar.xz
 
 dist:
 	git archive --prefix dwm-$(VERSION)/ HEAD | xz > dwm-$(VERSION).tar.xz
