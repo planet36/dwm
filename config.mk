@@ -25,4 +25,5 @@ CFLAGS += \
 		-Wno-sign-compare \
 		-Wno-unused-parameter
 CFLAGS += -Wno-deprecated-declarations -Os $(INCS) $(CPPFLAGS)
+DEPFLAGS += -MMD -MP
 LDFLAGS += $(LIBS)
