@@ -3,45 +3,47 @@
 
 include config.mk
 
-HDRS = $(filter-out config.def.h, config.h $(wildcard *.h))
 SRCS = $(filter-out transient.c, $(wildcard *.c))
+DEPS = $(SRCS:.c=.d)
 OBJS = $(SRCS:.c=.o)
 
-all: options dwm
+BIN = dwm
 
-options:
-	@echo dwm build options:
-	@echo "CFLAGS  = $(CFLAGS)"
-	@echo "LDFLAGS = $(LDFLAGS)"
-	@echo "CC      = $(CC)"
+$(BIN): $(OBJS)
+	$(CC) $^ -o $@ $(LDFLAGS)
+
+%.o: %.c
+	$(CC) $(DEPFLAGS) $(CFLAGS) -c $<
+
+$(OBJS): config.h config.mk
 
 config.h:
 	cp config.def.h config.h
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $<
-
-$(OBJS): config.mk $(HDRS)
-
-dwm: $(OBJS)
-	$(CC) $^ -o $@ $(LDFLAGS)
+options:
+	@echo $(BIN) build options:
+	@echo "CFLAGS  = $(CFLAGS)"
+	@echo "LDFLAGS = $(LDFLAGS)"
+	@echo "CC      = $(CC)"
 
 clean:
-	rm -f dwm *.o dwm-$(VERSION).tar.xz
+	@$(RM) --verbose -- $(BIN) $(OBJS) $(DEPS) $(BIN)-$(VERSION).tar.xz
 
 dist:
-	git archive --prefix dwm-$(VERSION)/ HEAD | xz > dwm-$(VERSION).tar.xz
+	git archive --prefix $(BIN)-$(VERSION)/ HEAD | xz > $(BIN)-$(VERSION).tar.xz
 
-install: dwm
+install: $(BIN)
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f dwm $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/dwm
+	cp -f $(BIN) $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/$(BIN)
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
-	sed "s/VERSION/$(VERSION)/g" < dwm.1 > $(DESTDIR)$(MANPREFIX)/man1/dwm.1
-	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/dwm.1
+	sed "s/VERSION/$(VERSION)/g" < $(BIN).1 > $(DESTDIR)$(MANPREFIX)/man1/$(BIN).1
+	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/$(BIN).1
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/dwm\
-		$(DESTDIR)$(MANPREFIX)/man1/dwm.1
+	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN) \
+		$(DESTDIR)$(MANPREFIX)/man1/$(BIN).1
 
-.PHONY: all options clean dist install uninstall
+.PHONY: options clean dist install uninstall
+
+-include $(DEPS)
