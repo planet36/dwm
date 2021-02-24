@@ -41,7 +41,7 @@ install: $(BIN)
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/$(BIN).1
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN) \
+	@$(RM) $(DESTDIR)$(PREFIX)/bin/$(BIN) \
 		$(DESTDIR)$(MANPREFIX)/man1/$(BIN).1
 
 .PHONY: options clean dist install uninstall
