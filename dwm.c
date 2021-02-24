@@ -305,7 +305,7 @@ applyrules(Client *c)
 		{
 			c->isfloating = r->isfloating;
 			c->tags |= r->tags;
-			for (m = mons; m && m->num != r->monitor; m = m->next);
+			for (m = mons; m && m->num != r->monitor; m = m->next){;}
 			if (m)
 				c->mon = m;
 		}
@@ -507,7 +507,7 @@ cleanupmon(Monitor *mon)
 	if (mon == mons)
 		mons = mons->next;
 	else {
-		for (m = mons; m && m->next != mon; m = m->next);
+		for (m = mons; m && m->next != mon; m = m->next){;}
 		m->next = mon->next;
 	}
 	XUnmapWindow(dpy, mon->barwin);
@@ -692,9 +692,9 @@ dirtomon(int dir)
 		if (!(m = selmon->next))
 			m = mons;
 	} else if (selmon == mons)
-		for (m = mons; m->next; m = m->next);
+		for (m = mons; m->next; m = m->next){;}
 	else
-		for (m = mons; m->next != selmon; m = m->next);
+		for (m = mons; m->next != selmon; m = m->next){;}
 	return m;
 }
 
@@ -790,7 +790,7 @@ void
 focus(Client *c)
 {
 	if (!c || !ISVISIBLE(c))
-		for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
+		for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext){;}
 	if (selmon->sel && selmon->sel != c)
 		unfocus(selmon->sel, 0);
 	if (c) {
@@ -843,9 +843,9 @@ focusstack(const Arg *arg)
 	if (!selmon->sel)
 		return;
 	if (arg->i > 0) {
-		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
+		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next){;}
 		if (!c)
-			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
+			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next){;}
 	} else {
 		for (i = selmon->clients; i != selmon->sel; i = i->next)
 			if (ISVISIBLE(i))
@@ -1376,7 +1376,7 @@ restack(Monitor *m)
 			}
 	}
 	XSync(dpy, False);
-	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
+	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev)){;}
 }
 
 void
@@ -1725,7 +1725,7 @@ tile(Monitor *m)
 	unsigned int i, n, h, mw, my, ty;
 	Client *c;
 
-	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++){;}
 	if (n == 0)
 		return;
 
