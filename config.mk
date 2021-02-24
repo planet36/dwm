@@ -21,10 +21,10 @@ LIBS = $(XINERAMALIBS) \
 # flags
 CPPFLAGS += -DVERSION=\"$(VERSION)\" -DUSE_ROFI $(XINERAMAFLAGS)
 DEPFLAGS += -MMD -MP
-CFLAGS += \
+CFLAGS += -O2 \
 		-Wno-deprecated-declarations \
 		-Wno-shadow \
 		-Wno-sign-compare \
 		-Wno-unused-parameter
-CFLAGS += -Os $(INCS) $(CPPFLAGS) $(DEPFLAGS)
+CFLAGS += $(INCS) $(CPPFLAGS) $(DEPFLAGS)
 LDFLAGS += $(LIBS)
