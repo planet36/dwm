@@ -359,9 +359,9 @@ applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact)
 		/* adjust for aspect limits */
 		if (c->mina > 0 && c->maxa > 0) {
 			if (c->maxa < (float)*w / *h)
-				*w = *h * c->maxa + 0.5;
+				*w = (int)(*h * c->maxa + 0.5);
 			else if (c->mina < (float)*h / *w)
-				*h = *w * c->mina + 0.5;
+				*h = (int)(*w * c->mina + 0.5);
 		}
 		if (baseismin) { /* increment calculation requires this */
 			*w -= c->basew;
