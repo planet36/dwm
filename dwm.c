@@ -50,7 +50,7 @@
 #define INTERSECT(x,y,w,h,m)    (MAX(0, MIN((x)+(w),(m)->wx+(m)->ww) - MAX((x),(m)->wx)) \
                                * MAX(0, MIN((y)+(h),(m)->wy+(m)->wh) - MAX((y),(m)->wy)))
 #define ISVISIBLE(C)            (((C)->tags & (C)->mon->tagset[(C)->mon->seltags]))
-#define LENGTH(X)               (sizeof (X) / sizeof (X)[0])
+#define LENGTH(X)               (sizeof(X) / sizeof((X)[0]))
 #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
 #define WIDTH(X)                ((X)->w + 2 * (X)->bw)
 #define HEIGHT(X)               ((X)->h + 2 * (X)->bw)
@@ -400,7 +400,7 @@ arrange(Monitor *m)
 void
 arrangemon(Monitor *m)
 {
-	strncpy(m->ltsymbol, m->lt[m->sellt]->symbol, sizeof m->ltsymbol);
+	strncpy(m->ltsymbol, m->lt[m->sellt]->symbol, sizeof(m->ltsymbol));
 	if (m->lt[m->sellt]->arrange)
 		m->lt[m->sellt]->arrange(m);
 }
@@ -646,7 +646,7 @@ createmon(void)
 	m->topbar = topbar;
 	m->lt[0] = &layouts[0];
 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
-	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
+	strncpy(m->ltsymbol, layouts[0].symbol, sizeof(m->ltsymbol));
 	return m;
 }
 
@@ -869,7 +869,7 @@ getatomprop(Client *c, Atom prop)
 	unsigned char *p = NULL;
 	Atom da, atom = None;
 
-	if (XGetWindowProperty(dpy, c->win, prop, 0L, sizeof atom, False, XA_ATOM,
+	if (XGetWindowProperty(dpy, c->win, prop, 0L, sizeof(atom), False, XA_ATOM,
 		&da, &di, &dl, &dl, &p) == Success && p) {
 		atom = *(Atom *)p;
 		XFree(p);
@@ -1116,7 +1116,7 @@ monocle(Monitor *m)
 		if (ISVISIBLE(c))
 			n++;
 	if (n > 0) /* override layout symbol */
-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+		snprintf(m->ltsymbol, sizeof(m->ltsymbol), "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
 		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
 }
@@ -1514,7 +1514,7 @@ setlayout(const Arg *arg)
 		selmon->sellt ^= 1;
 	if (arg && arg->v)
 		selmon->lt[selmon->sellt] = (const Layout *)arg->v;
-	strncpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof selmon->ltsymbol);
+	strncpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof(selmon->ltsymbol));
 	if (selmon->sel)
 		arrange(selmon);
 	else
@@ -2046,8 +2046,8 @@ updatestatus(void)
 void
 updatetitle(Client *c)
 {
-	if (!gettextprop(c->win, netatom[NetWMName], c->name, sizeof c->name))
-		gettextprop(c->win, XA_WM_NAME, c->name, sizeof c->name);
+	if (!gettextprop(c->win, netatom[NetWMName], c->name, sizeof(c->name)))
+		gettextprop(c->win, XA_WM_NAME, c->name, sizeof(c->name));
 	if (c->name[0] == '\0') /* hack to mark broken clients */
 		strncpy(c->name, broken, sizeof(c->name));
 }
