@@ -19,7 +19,7 @@ LIBS = `pkg-config --libs   fontconfig freetype2 x11 xft` $(XINERAMALIBS)
 # flags
 CPPFLAGS += -DVERSION=\"$(VERSION)\" -D_DEFAULT_SOURCE -DUSE_ROFI $(XINERAMAFLAGS)
 DEPFLAGS += -MMD -MP
-CFLAGS += -Os \
+CFLAGS += -O2 \
 		-Wno-deprecated-declarations \
 		-Wno-shadow \
 		-Wno-sign-compare \
