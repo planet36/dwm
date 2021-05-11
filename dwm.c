@@ -247,7 +247,7 @@ static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh, blw = 0;      /* bar geometry */
 static int lrpad;            /* sum of left and right padding for text */
-static int stextlrpad = 4;   /* sum of left and right padding for status text */
+static int stextlrpad = 8;   /* sum of left and right padding for status text */
 static int bvpad = 4;        /* bar vertical padding */
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
