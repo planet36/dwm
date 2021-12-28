@@ -18,12 +18,11 @@ INCS = `pkg-config --cflags fontconfig freetype2 x11 xft`
 LIBS = `pkg-config --libs   fontconfig freetype2 x11 xft` $(XINERAMALIBS)
 
 # flags
-CPPFLAGS += -DVERSION=\"$(VERSION)\" -D_DEFAULT_SOURCE -DUSE_ROFI $(XINERAMAFLAGS)
+CPPFLAGS += -DVERSION=\"$(VERSION)\" -D_DEFAULT_SOURCE $(INCS) -DUSE_ROFI $(XINERAMAFLAGS)
 DEPFLAGS += -MMD -MP
 CFLAGS += -O2 \
 		-Wno-deprecated-declarations \
 		-Wno-shadow \
 		-Wno-sign-compare \
 		-Wno-unused-parameter
-CFLAGS += $(INCS) $(CPPFLAGS) $(DEPFLAGS)
 LDLIBS += $(LIBS)
