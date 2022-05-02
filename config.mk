@@ -21,7 +21,6 @@ LIBS = `pkg-config --libs   fontconfig freetype2 x11 xft` $(XINERAMALIBS)
 CPPFLAGS += -DVERSION=\"$(VERSION)\" -D_DEFAULT_SOURCE $(INCS) $(XINERAMAFLAGS)
 DEPFLAGS += -MMD -MP
 CFLAGS += -O2 \
-		-Wno-deprecated-declarations \
 		-Wno-shadow \
 		-Wno-sign-compare \
 		-Wno-unused-parameter
