@@ -1,9 +1,9 @@
 /* cc transient.c -o transient -lX11 */
 
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 
 int main(void) {
 	Display *d;
