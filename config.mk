@@ -1,6 +1,6 @@
 # dwm version
 VERSION = 6.3
-VERSION := $(VERSION)-sdw
+VERSION := $(shell git describe --tags)-planet36
 
 # Customize below to fit your system
 
