@@ -14,8 +14,8 @@ MANDIR ?= $(PREFIX)/share/man
 #XINERAMAFLAGS = -DXINERAMA
 
 # includes and libs
-INCS = `pkg-config --cflags fontconfig freetype2 x11 xft`
-LIBS = `pkg-config --libs   fontconfig freetype2 x11 xft` $(XINERAMALIBS)
+INCS = `pkg-config --cflags xft`
+LIBS = `pkg-config --libs   fontconfig x11 xft` $(XINERAMALIBS)
 
 # flags
 CPPFLAGS += -DVERSION=\"$(VERSION)\" -D_DEFAULT_SOURCE $(INCS) $(XINERAMAFLAGS)
