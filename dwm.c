@@ -1707,7 +1707,7 @@ spawn(const Arg *arg)
 			close(ConnectionNumber(dpy));
 		setsid();
 		execvp(((char * const *)arg->v)[0], (char * const *)arg->v);
-		die("dwm: execvp '%s' failed:", ((char **)arg->v)[0]);
+		die("dwm: execvp '%s' failed:", ((char * const *)arg->v)[0]);
 	}
 }
 
