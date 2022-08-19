@@ -2192,7 +2192,7 @@ main(int argc, char *argv[])
 		}
 	}
 	else if (argc != 1)
-		die("usage: dwm [-Vh]");
+		die("Usage: dwm [-Vh]");
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		(void)fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
