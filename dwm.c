@@ -2181,12 +2181,12 @@ zoom(const Arg *arg)
 int
 main(int argc, char *argv[])
 {
-	if (argc == 2 && strcmp("-v", argv[1]) == 0) {
+	if (argc == 2 && strcmp("-V", argv[1]) == 0) {
 		(void)puts("dwm-"VERSION);
 		return 0;
 	}
 	else if (argc != 1)
-		die("usage: dwm [-v]");
+		die("usage: dwm [-V]");
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		(void)fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
