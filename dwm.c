@@ -2186,9 +2186,13 @@ main(int argc, char *argv[])
 			(void)puts("dwm-"VERSION);
 			return 0;
 		}
+		else if (strcmp(argv[1], "-h") == 0) {
+			(void)puts("Usage: dwm [-Vh]\n");
+			return 0;
+		}
 	}
 	else if (argc != 1)
-		die("usage: dwm [-V]");
+		die("usage: dwm [-Vh]");
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		(void)fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
