@@ -2210,7 +2210,7 @@ bstack(Monitor *m) {
 	unsigned int i, n;
 	Client *c;
 
-	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++){;}
 	if (n == 0)
 		return;
 	if (n > m->nmaster) {
@@ -2242,7 +2242,7 @@ bstackhoriz(Monitor *m) {
 	unsigned int i, n;
 	Client *c;
 
-	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++){;}
 	if (n == 0)
 		return;
 	if (n > m->nmaster) {
