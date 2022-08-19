@@ -2181,9 +2181,11 @@ zoom(const Arg *arg)
 int
 main(int argc, char *argv[])
 {
-	if (argc == 2 && strcmp("-V", argv[1]) == 0) {
-		(void)puts("dwm-"VERSION);
-		return 0;
+	if (argc == 2) {
+		if (strcmp(argv[1], "-V") == 0) {
+			(void)puts("dwm-"VERSION);
+			return 0;
+		}
 	}
 	else if (argc != 1)
 		die("usage: dwm [-V]");
