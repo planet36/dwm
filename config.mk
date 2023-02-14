@@ -19,7 +19,7 @@ LIBS = `pkg-config --libs   fontconfig x11 xft` $(XINERAMALIBS)
 
 # flags
 CPPFLAGS += -DVERSION=\"$(VERSION)\" -D_DEFAULT_SOURCE $(INCS) $(XINERAMAFLAGS)
-DEPFLAGS += -MMD -MP
+CPPFLAGS += -MMD -MP
 CFLAGS += -O2 \
 		-Wno-shadow \
 		-Wno-sign-compare \
