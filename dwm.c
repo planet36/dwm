@@ -138,7 +138,7 @@ struct Monitor {
 };
 
 typedef struct {
-	const char *class;
+	const char *app_class;
 	const char *instance;
 	const char *title;
 	unsigned int tags;
@@ -289,7 +289,7 @@ struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
 void
 applyrules(Client *c)
 {
-	const char *class, *instance;
+	const char *app_class, *instance;
 	unsigned int i;
 	const Rule *r;
 	Monitor *m;
@@ -299,13 +299,13 @@ applyrules(Client *c)
 	c->isfloating = 0;
 	c->tags = 0;
 	XGetClassHint(dpy, c->win, &ch);
-	class    = ch.res_class ? ch.res_class : broken;
+	app_class    = ch.res_class ? ch.res_class : broken;
 	instance = ch.res_name  ? ch.res_name  : broken;
 
 	for (i = 0; i < LENGTH(rules); i++) {
 		r = &rules[i];
 		if ((!r->title || strstr(c->name, r->title))
-		&& (!r->class || strstr(class, r->class))
+		&& (!r->app_class || strstr(app_class, r->app_class))
 		&& (!r->instance || strstr(instance, r->instance)))
 		{
 			c->isfloating = r->isfloating;
