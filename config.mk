@@ -1,5 +1,6 @@
 # dwm version
 VERSION = 6.5
+
 VERSION := $(shell git describe --tags --abbrev=0)-planet36
 
 # Customize below to fit your system
