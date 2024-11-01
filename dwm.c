@@ -2203,7 +2203,7 @@ main(int argc, char *argv[])
 			return 0;
 		}
 		else if (strcmp(argv[1], "-h") == 0) {
-			(void)puts("Usage: dwm [-Vh]\n");
+			(void)puts("Usage: dwm [-Vh]");
 			return 0;
 		}
 	}
