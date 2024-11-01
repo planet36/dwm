@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -116,7 +117,7 @@ xfont_create(Drw *drw, const char *fontname, FcPattern *fontpattern)
 			return NULL;
 		}
 	} else {
-		die("no font specified.");
+		errx(EXIT_FAILURE, "no font specified.");
 	}
 
 	font = (Fnt*)ecalloc(1, sizeof(Fnt));
@@ -175,7 +176,7 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
 	if (!XftColorAllocName(drw->dpy, DefaultVisual(drw->dpy, drw->screen),
 	                       DefaultColormap(drw->dpy, drw->screen),
 	                       clrname, dest))
-		die("error, cannot allocate color '%s'", clrname);
+		errx(EXIT_FAILURE, "error, cannot allocate color '%s'", clrname);
 
 	dest->pixel |= 0xff << 24;
 }
@@ -347,7 +348,7 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 
 			if (!drw->fonts->pattern) {
 				/* Refer to the comment in xfont_create for more information. */
-				die("the first font in the cache must be loaded from a font string.");
+				errx(EXIT_FAILURE, "the first font in the cache must be loaded from a font string.");
 			}
 
 			fcpattern = FcPatternDuplicate(drw->fonts->pattern);

@@ -20,6 +20,7 @@
  *
  * To understand everything else, start reading main().
  */
+#include <err.h>
 #include <errno.h>
 #include <locale.h>
 #include <signal.h>
@@ -1574,7 +1575,7 @@ setup(void)
 	root = RootWindow(dpy, screen);
 	drw = drw_create(dpy, screen, root, sw, sh);
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
-		die("no fonts could be loaded.");
+		errx(EXIT_FAILURE, "no fonts could be loaded.");
 	lrpad = drw->fonts->h;
 	bh = drw->fonts->h + bvpad;
 	updategeom();
@@ -1715,7 +1716,7 @@ spawn(const Arg *arg)
 		sigaction(SIGCHLD, &sa, NULL);
 
 		execvp(((char * const *)arg->v)[0], (char * const *)arg->v);
-		die("dwm: execvp '%s' failed:", ((char * const *)arg->v)[0]);
+		err(EXIT_FAILURE, "dwm: execvp '%s' failed", ((char * const *)arg->v)[0]);
 	}
 }
 
@@ -2177,7 +2178,7 @@ xerrordummy(Display *dpy, XErrorEvent *ee)
 int
 xerrorstart(Display *dpy, XErrorEvent *ee)
 {
-	die("dwm: another window manager is already running");
+	errx(EXIT_FAILURE, "another window manager is already running");
 	return -1;
 }
 
@@ -2213,12 +2214,12 @@ main(int argc, char *argv[])
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		(void)fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
-		die("dwm: cannot open display");
+		errx(EXIT_FAILURE, "cannot open display");
 	checkotherwm();
 	setup();
 #ifdef __OpenBSD__
 	if (pledge("stdio rpath proc exec", NULL) == -1)
-		die("pledge");
+		errx(EXIT_FAILURE, "pledge");
 #endif /* __OpenBSD__ */
 	scan();
 	run();
