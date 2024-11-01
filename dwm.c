@@ -2206,8 +2206,10 @@ main(int argc, char *argv[])
 			return 0;
 		}
 	}
-	else if (argc != 1)
-		die("Usage: dwm [-Vh]");
+	else if (argc != 1) {
+		(void)puts("Usage: dwm [-Vh]");
+		return EXIT_FAILURE;
+	}
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		(void)fputs("warning: no locale support\n", stderr);
 	if (!(dpy = XOpenDisplay(NULL)))
