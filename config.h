@@ -77,7 +77,7 @@ static const char *dmenucmd[] = { "rofi", "-show", "run", NULL };
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 #endif
 static const char *termcmd[]  = { "xterm", "-e", "tmux", NULL };
-static const char *lockcmd[]  = { "xtrlock", "-b", NULL };
+static const char *lockcmd[]  = { "slock", NULL };
 static const char *scratchcmd[] = { "xterm", "-e", "nvim", "+star", NULL };
 
 static const Key keys[] = {
