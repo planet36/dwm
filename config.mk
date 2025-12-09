@@ -26,9 +26,3 @@ CFLAGS += -O2 \
 		-Wno-sign-compare \
 		-Wno-unused-parameter
 LDLIBS += $(LIBS)
-
-ROFI := $(shell command -v rofi)
-ifdef ROFI
-	CPPFLAGS += -DUSE_ROFI
-endif
-undefine ROFI
