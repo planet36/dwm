@@ -1,5 +1,5 @@
 # dwm version
-VERSION = 6.6
+VERSION = 6.7
 
 VERSION := $(shell git describe --tags --abbrev=0)-planet36
 

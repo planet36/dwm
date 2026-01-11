@@ -882,7 +882,8 @@ getatomprop(Client *c, Atom prop)
 
 	if (XGetWindowProperty(dpy, c->win, prop, 0L, sizeof(atom), False, XA_ATOM,
 		&da, &di, &dl, &dl, &p) == Success && p) {
-		memcpy(&atom, p, sizeof(atom));
+		if (dl > 0)
+			memcpy(&atom, p, sizeof(atom));
 		XFree(p);
 	}
 	return atom;
