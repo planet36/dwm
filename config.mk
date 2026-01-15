@@ -19,10 +19,14 @@ INCS = `pkg-config --cflags xft`
 LIBS = `pkg-config --libs   fontconfig x11 xft` $(XINERAMALIBS)
 
 # flags
+CPPFLAGS = -MMD -MP
 CPPFLAGS += -DVERSION=\"$(VERSION)\" -D_DEFAULT_SOURCE $(INCS) $(XINERAMAFLAGS)
-CPPFLAGS += -MMD -MP
-CFLAGS += -O2 \
-		-Wno-shadow \
-		-Wno-sign-compare \
-		-Wno-unused-parameter
-LDLIBS += $(LIBS)
+
+CFLAGS = -std=c23
+CFLAGS += -pipe -Wall -Wextra -Wpedantic -Wfatal-errors
+CFLAGS += -O3 -flto=auto -march=native -fno-math-errno
+CFLAGS += -Wno-shadow
+CFLAGS += -Wno-sign-compare
+CFLAGS += -Wno-unused-parameter
+
+LDLIBS = $(LIBS)
