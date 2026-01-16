@@ -880,7 +880,7 @@ getatomprop(Client *c, Atom prop)
 	unsigned char *p = NULL;
 	Atom da, atom = None;
 
-	if (XGetWindowProperty(dpy, c->win, prop, 0L, sizeof atom, False, XA_ATOM,
+	if (XGetWindowProperty(dpy, c->win, prop, 0L, sizeof(atom), False, XA_ATOM,
 		&da, &di, &nitems, &dl, &p) == Success && p) {
 		if (nitems > 0)
 			memcpy(&atom, p, sizeof(atom));
