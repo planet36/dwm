@@ -24,7 +24,7 @@ CPPFLAGS += -DVERSION=\"$(VERSION)\" -D_DEFAULT_SOURCE $(INCS) $(XINERAMAFLAGS)
 
 CFLAGS = -std=c23
 CFLAGS += -pipe -Wall -Wextra -Wpedantic -Wfatal-errors
-CFLAGS += -O3 -flto=auto -march=native -fno-math-errno
+CFLAGS += -O3 -flto=auto -march=native
 CFLAGS += -Wno-shadow
 CFLAGS += -Wno-sign-compare
 CFLAGS += -Wno-unused-parameter
