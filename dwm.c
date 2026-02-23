@@ -883,7 +883,7 @@ getatomprop(Client *c, Atom prop)
 	if (XGetWindowProperty(dpy, c->win, prop, 0L, sizeof(atom), False, XA_ATOM,
 		&da, &format, &nitems, &dl, &p) == Success && p) {
 		if (nitems > 0 && format == 32)
-			memcpy(&atom, p, sizeof(atom));
+			(void)memcpy(&atom, p, sizeof(atom));
 		XFree(p);
 	}
 	return atom;
@@ -1935,7 +1935,7 @@ updategeom(void)
 		unique = (XineramaScreenInfo*)ecalloc(nn, sizeof(XineramaScreenInfo));
 		for (i = 0, j = 0; i < nn; i++)
 			if (isuniquegeom(unique, j, &info[i]))
-				memcpy(&unique[j++], &info[i], sizeof(XineramaScreenInfo));
+				(void)memcpy(&unique[j++], &info[i], sizeof(XineramaScreenInfo));
 		XFree(info);
 		nn = j;
 
