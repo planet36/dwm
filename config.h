@@ -71,7 +71,7 @@ static const Layout layouts[] = {
 
 #define TERM "kitty"
 
-#define CALCMD "dunstify -a calendar -- \"$(date '+%B %Y')\" \"$(cal | tail -n +2)\""
+#define CALCMD "dunstify -a calendar -- \"\" \"$(cal)\""
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
