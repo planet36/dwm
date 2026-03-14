@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 #pragma once
 
-#define MIN(A, B)               ((B) < (A) ? (B) : (A))
-#define MAX(A, B)               ((A) < (B) ? (B) : (A))
+#define MAX(A, B)               ((A) > (B) ? (A) : (B))
+#define MIN(A, B)               ((A) < (B) ? (A) : (B))
 #define BETWEEN(X, A, B)        ((A) <= (X) && (X) <= (B))
 #define LENGTH(X)               (sizeof (X) / sizeof (X)[0])
 
